@@ -1,5 +1,5 @@
 {
-  "name": "template-api",
+  "name": "{{ tmplr.project_name }}",
   "version": "1.0.1",
   "main": "server.js",
   "license": "MIT",

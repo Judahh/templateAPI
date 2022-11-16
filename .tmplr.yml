@@ -1,0 +1,12 @@
+steps:
+  - read: project_name
+    from: git.remote_name
+    fallback:
+      prompt: What is the name of the project?
+      default:
+        from: path.rootdir
+
+  - update:
+    - README.md
+    - package.json
+    - .github/workflows/test.yml

@@ -1,1 +1,1 @@
-# Template API
+# {{ tmplr.project_name }}

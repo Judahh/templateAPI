@@ -45,16 +45,16 @@ jobs:
         with:
           cmd: test # will run `yarn test` command
         env:
-          INSTANCE: "template-api"
-          SERVICE_NAME: "TEMPLATE-API"
+          INSTANCE: "{{ tmplr.project_name }}"
+          SERVICE_NAME: "{{ tmplr.project_name }}"
           ALLOWED_HOSTS: "*"
       - name: Test Integration
         uses: borales/actions-yarn@master
         with:
           cmd: integration # will run `yarn integration` command
         env:
-          INSTANCE: "template-api"
-          SERVICE_NAME: "TEMPLATE-API"
+          INSTANCE: "{{ tmplr.project_name }}"
+          SERVICE_NAME: "{{ tmplr.project_name }}"
           ALLOWED_HOSTS: "*"
       - name: ZIP TO ARTIFACT
         if: ${{ github.ref_name == 'main' || github.ref_name == 'master' }}
