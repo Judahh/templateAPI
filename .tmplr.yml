@@ -8,4 +8,4 @@ steps:
 
   - update: README.md
   - update: package.json
-  - update: .github/workflows/test.yml
+  - update: .github/workflows/Test.yml
