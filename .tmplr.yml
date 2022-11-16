@@ -6,7 +6,6 @@ steps:
       default:
         from: path.rootdir
 
-  - update:
-    - README.md
-    - package.json
-    - .github/workflows/test.yml
+  - update: README.md
+  - update: package.json
+  - update: .github/workflows/test.yml
