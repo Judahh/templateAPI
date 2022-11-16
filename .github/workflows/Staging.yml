@@ -1,0 +1,37 @@
+name: Staging
+
+on:
+  push:
+    branches:
+      - "development"
+      - "develop"
+      - "devel"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container:
+      image: node:10.16-jessie
+
+    services:
+      mongo:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@main
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org
+      - name: ARTIFACT TO UNZIP
+        uses: judahh/artifactToUnzip@main
+        with:
+          production: true
+          ignore: '/source\n/src\n/database\n.test.ts\ntemp.ts\n.yml\ntest\ntests\n'

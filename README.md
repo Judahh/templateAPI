@@ -1,1 +1,1 @@
-# templateAPI
+# Template API

@@ -1,0 +1,63 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - "*" # matches every branch
+      - "*/*" # matches every branch containing a single '/'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: node:10.16-jessie
+
+    services:
+      mongo:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@main
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Install
+        uses: borales/actions-yarn@master
+        with:
+          cmd: install # will run `yarn install` command
+      - name: Build
+        uses: borales/actions-yarn@master
+        env:
+          ALLOWED_HOSTS: "*"
+        with:
+          cmd: build # will run `yarn build` command
+      - name: Test
+        uses: borales/actions-yarn@master
+        with:
+          cmd: test # will run `yarn test` command
+        env:
+          INSTANCE: "template-api"
+          SERVICE_NAME: "TEMPLATE-API"
+          ALLOWED_HOSTS: "*"
+      - name: Test Integration
+        uses: borales/actions-yarn@master
+        with:
+          cmd: integration # will run `yarn integration` command
+        env:
+          INSTANCE: "template-api"
+          SERVICE_NAME: "TEMPLATE-API"
+          ALLOWED_HOSTS: "*"
+      - name: ZIP TO ARTIFACT
+        if: ${{ github.ref_name == 'main' || github.ref_name == 'master' }}
+        uses: judahh/zipToArtifact@main
+        with:
+          production: true
