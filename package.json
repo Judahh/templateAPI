@@ -33,6 +33,7 @@
     "@flexiblepersistence/database-info": "latest",
     "@midware/mauth": "latest",
     "clsx": "latest",
+    "cors": "latest",
     "coveralls": "latest",
     "dotenv": "latest",
     "express-rate-limit": "latest",

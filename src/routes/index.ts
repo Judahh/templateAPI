@@ -57,5 +57,6 @@ export default class Index extends RouterSingleton {
 
       if (!this.controller.sample)
         this.controller.sample = new SampleController(initDefault);
+    }
   }
 }
