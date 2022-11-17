@@ -12,11 +12,19 @@ import SampleSchema from './schemas/sampleSchema';
 
 import SampleService from './services/sampleService';
 
+// import { PGSQL } from '@flexiblepersistence/pgsql';
+// import { MSSQL } from '@flexiblepersistence/mssql';
+
 const journaly = Journaly.newJournaly() as SenderReceiver<any>;
 const readDatabase = getReadDatabase(journaly);
 const eventDatabase = getEventDatabase(journaly);
 
-// console.log('readDatabase:', readDatabase);
+// const sql = new PGSQL(readDatabase);
+// const sql = new MSSQL(readDatabase);
+
+// const database = new DAOPersistence(sql, {
+//   sample: new SampleDAO(),
+// });
 
 const database = new MongoPersistence(readDatabase, {
   sample: new SampleSchema(),

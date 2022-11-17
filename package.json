@@ -29,6 +29,9 @@
   },
   "dependencies": {
     "@backapirest/any": "latest",
+    "@flexiblepersistence/mssql": "latest",
+    "@flexiblepersistence/pgsql": "latest",
+    "@flexiblepersistence/dao": "latest",
     "@flexiblepersistence/service": "latest",
     "@flexiblepersistence/database-info": "latest",
     "@midware/mauth": "latest",
