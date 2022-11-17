@@ -8,7 +8,7 @@ import {
   getReadDatabase,
 } from '@flexiblepersistence/database-info';
 
-import SampleSchema from './databases/sampleSchema';
+import SampleSchema from './schemas/sampleSchema';
 
 import SampleService from './services/sampleService';
 
