@@ -10,8 +10,6 @@ import {
 
 {{ tmplr.database_import }}
 
-import SampleSchema from './schemas/sampleSchema';
-
 import SampleService from './services/sampleService';
 
 const journaly = Journaly.newJournaly() as SenderReceiver<any>;

@@ -34,8 +34,11 @@ steps:
       - read: database_sql
         eval: "const sql = new MSSQL(readDatabase);"
       else:
-        read: database_import
-        eval: "import SampleSchema from './schemas/sampleSchema';"
+        steps:
+          - read: database_import
+            eval: "import SampleSchema from './schemas/sampleSchema';"
+          - read: database_sql
+            eval: ""
 
   - update: README.md
   - update: package.json
