@@ -17,7 +17,6 @@ const readDatabase = getReadDatabase(journaly);
 const eventDatabase = getEventDatabase(journaly);
 
 {{ tmplr.database_sql }}
-
 {{ tmplr.database_var }}
 
 const read = new ServiceHandler(

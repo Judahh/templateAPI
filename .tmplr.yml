@@ -13,21 +13,21 @@ steps:
       - PGSQL
       - MSSQL
 
-  - if: database_type == "MongoDB"
+  - if: database_type == 'MongoDB'
     read: database_var
     eval: "const database = new MongoPersistence(readDatabase, {\n\tsample: new SampleSchema(),\n});"
     else:
       read: database_var
       eval: "const database = new DAOPersistence(sql, {\n\tsample: new SampleDAO(),\n});"
 
-  - if: database_type == "PGSQL"
+  - if: database_type == 'PGSQL'
     steps:
       - read: database_import
         eval: "import { PGSQL } from '@flexiblepersistence/pgsql';\nimport SampleDAO from './dAOs/sampleDAO';"
       - read: database_sql
         eval: "const sql = new PGSQL(readDatabase);"
     else:
-      if: database_type == "MSSQL"
+      if: database_type == 'MSSQL'
       steps:
       - read: database_import
         eval: "import { MSSQL } from '@flexiblepersistence/mssql';\nimport SampleDAO from './dAOs/sampleDAO';"
