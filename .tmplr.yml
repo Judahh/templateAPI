@@ -16,9 +16,11 @@ steps:
   - if: database_type == 'MongoDB'
     read: database_var
     eval: "const database = new MongoPersistence(readDatabase, {\n\tsample: new SampleSchema(),\n});"
+    remove: src/dAOs/sampleDAO.ts
     else:
       read: database_var
       eval: "const database = new DAOPersistence(sql, {\n\tsample: new SampleDAO(),\n});"
+      remove: src/schemas/sampleSchema.ts
 
   - if: database_type == 'PGSQL'
     steps:
