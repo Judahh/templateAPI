@@ -8,27 +8,19 @@ import {
   getReadDatabase,
 } from '@flexiblepersistence/database-info';
 
+{{ tmplr.database_import }}
+
 import SampleSchema from './schemas/sampleSchema';
 
 import SampleService from './services/sampleService';
-
-// import { PGSQL } from '@flexiblepersistence/pgsql';
-// import { MSSQL } from '@flexiblepersistence/mssql';
 
 const journaly = Journaly.newJournaly() as SenderReceiver<any>;
 const readDatabase = getReadDatabase(journaly);
 const eventDatabase = getEventDatabase(journaly);
 
-// const sql = new PGSQL(readDatabase);
-// const sql = new MSSQL(readDatabase);
+{{ tmplr.database_sql }}
 
-// const database = new DAOPersistence(sql, {
-//   sample: new SampleDAO(),
-// });
-
-const database = new MongoPersistence(readDatabase, {
-  sample: new SampleSchema(),
-});
+{{ tmplr.database_var }}
 
 const read = new ServiceHandler(
   readDatabase,

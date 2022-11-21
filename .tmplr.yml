@@ -6,7 +6,39 @@ steps:
       default:
         from: path.rootdir
 
+  - read: database_type
+    prompt: What database type do you want to use?
+    choices:
+      - MongoDB
+      - PGSQL
+      - MSSQL
+
+  - if: database_type == "MongoDB"
+    read: database_var
+    eval: "const database = new MongoPersistence(readDatabase, {\n\tsample: new SampleSchema(),\n});"
+    else:
+      read: database_var
+      eval: "const database = new DAOPersistence(sql, {\n\tsample: new SampleDAO(),\n});"
+
+  - if: database_type == "PGSQL"
+    steps:
+      - read: database_import
+        eval: "import { PGSQL } from '@flexiblepersistence/pgsql';\nimport SampleDAO from './dAOs/sampleDAO';"
+      - read: database_sql
+        eval: "const sql = new PGSQL(readDatabase);"
+    else:
+      if: database_type == "MSSQL"
+      steps:
+      - read: database_import
+        eval: "import { MSSQL } from '@flexiblepersistence/mssql';\nimport SampleDAO from './dAOs/sampleDAO';"
+      - read: database_sql
+        eval: "const sql = new MSSQL(readDatabase);"
+      else:
+        read: database_import
+        eval: "import SampleSchema from './schemas/sampleSchema';"
+
   - update: README.md
   - update: package.json
   - update: .env
   - update: .github/workflows/Test.yml
+  - update: src/dBHandler.ts
