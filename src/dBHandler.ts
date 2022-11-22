@@ -15,7 +15,6 @@ import SampleService from './services/sampleService';
 const journaly = Journaly.newJournaly() as SenderReceiver<any>;
 const readDatabase = getReadDatabase(journaly);
 const eventDatabase = getEventDatabase(journaly);
-
 {{ tmplr.database_sql }}
 {{ tmplr.database_var }}
 

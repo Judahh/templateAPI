@@ -14,7 +14,7 @@ steps:
             - read: database_import
               eval: "import SampleSchema from './schemas/sampleSchema';"
             - read: database_sql
-              eval: "\b"
+              eval: ""
             - read: database_var
               eval: "const database = new MongoPersistence(readDatabase, {\n\tsample: new SampleSchema(),\n});"
             - read: database_port
@@ -35,7 +35,7 @@ steps:
           - read: database_import
             eval: "import { DAOPersistence } from '@flexiblepersistence/dao';\nimport { PGSQL } from '@flexiblepersistence/pgsql';\nimport SampleDAO from './dAOs/sampleDAO';"
           - read: database_sql
-            eval: "const sql = new PGSQL(readDatabase);"
+            eval: "\nconst sql = new PGSQL(readDatabase);"
           - read: database_var
             eval: "const database = new DAOPersistence(sql, {\n\tsample: new SampleDAO(),\n});"
           - read: database_port
@@ -56,7 +56,7 @@ steps:
           - read: database_import
             eval: "import { DAOPersistence } from '@flexiblepersistence/dao';\nimport { MSSQL } from '@flexiblepersistence/mssql';\nimport SampleDAO from './dAOs/sampleDAO';"
           - read: database_sql
-            eval: "const sql = new MSSQL(readDatabase);"
+            eval: "\nconst sql = new MSSQL(readDatabase);"
           - read: database_var
             eval: "const database = new DAOPersistence(sql, {\n\tsample: new SampleDAO(),\n});"
           - read: database_port
