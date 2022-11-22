@@ -18,7 +18,7 @@ steps:
             - read: database_sql
               eval: "\b"
             - read: database_port
-              eval: 27017
+              eval: "27017"
             - read: database_name
               eval: ""
             - read: database_user
@@ -39,7 +39,7 @@ steps:
           - read: database_sql
             eval: "const sql = new PGSQL(readDatabase);"
           - read: database_port
-            eval: 5432
+            eval: "5432"
           - read: database_name
             eval: "db"
           - read: database_user
@@ -60,7 +60,7 @@ steps:
           - read: database_sql
             eval: "const sql = new MSSQL(readDatabase);"
           - read: database_port
-            eval: 1433
+            eval: "1433"
           - read: database_name
             eval: "db"
           - read: database_user
@@ -68,7 +68,7 @@ steps:
           - read: database_password
             eval: "Passw@rd"
           - read: database_encryption_disabled
-            eval: true
+            eval: "true"
           - remove: src/schemas/sampleSchema.ts
           - remove: src/schemas
           - eval: 'MSSQL'
