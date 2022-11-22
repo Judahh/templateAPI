@@ -13,31 +13,31 @@ steps:
           steps:
             - read: database_var
               eval: "const database = new MongoPersistence(readDatabase, {\n\tsample: new SampleSchema(),\n});"
-              remove: src/dAOs/sampleDAO.ts
             - read: database_import
               eval: "import SampleSchema from './schemas/sampleSchema';"
             - read: database_sql
               eval: ""
+            - remove: src/dAOs/sampleDAO.ts
             - eval: 'MongoDB'
       - PGSQL:
           steps:
           - read: database_var
             eval: "const database = new DAOPersistence(sql, {\n\tsample: new SampleDAO(),\n});"
-            remove: src/schemas/sampleSchema.ts
           - read: database_import
             eval: "import { PGSQL } from '@flexiblepersistence/pgsql';\nimport SampleDAO from './dAOs/sampleDAO';"
           - read: database_sql
             eval: "const sql = new PGSQL(readDatabase);"
+          - remove: src/schemas/sampleSchema.ts
           - eval: 'PGSQL'
       - MSSQL:
           steps:
           - read: database_var
             eval: "const database = new DAOPersistence(sql, {\n\tsample: new SampleDAO(),\n});"
-            remove: src/schemas/sampleSchema.ts
           - read: database_import
             eval: "import { MSSQL } from '@flexiblepersistence/mssql';\nimport SampleDAO from './dAOs/sampleDAO';"
           - read: database_sql
             eval: "const sql = new MSSQL(readDatabase);"
+          - remove: src/schemas/sampleSchema.ts
           - eval: 'MSSQL'
 
   - update: README.md
