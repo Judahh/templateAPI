@@ -20,7 +20,7 @@ steps:
             - read: database_port
               eval: "27017"
             - read: database_name
-              eval: "db"
+              eval: ""
             - read: database_user
               eval: "sa"
             - read: database_password
@@ -108,11 +108,9 @@ steps:
     prompt: Disable write database?
     choices:
       - yes:
-          steps:
-          - eval: 'true'
+        eval: 'true'
       - no:
-          steps:
-          - eval: 'false'
+        eval: 'false'
 
   - update: README.md
   - update: docker-compose.yml
