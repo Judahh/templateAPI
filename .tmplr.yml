@@ -108,10 +108,10 @@ steps:
     prompt: Disable write database?
     choices:
       - yes:
-        steps:
+          steps:
           - eval: 'true'
       - no:
-        steps:
+          steps:
           - eval: 'false'
 
   - update: README.md
