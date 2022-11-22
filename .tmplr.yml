@@ -107,9 +107,9 @@ steps:
   - read: disable_write_database
     prompt: Disable write database?
     choices:
-      - yes:
+      - DISABLE:
         eval: 'true'
-      - no:
+      - ENABLE:
         eval: 'false'
 
   - update: README.md
