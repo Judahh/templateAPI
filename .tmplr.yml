@@ -11,12 +11,12 @@ steps:
     choices:
       - MongoDB:
           steps:
-            - read: database_var
-              eval: "const database = new MongoPersistence(readDatabase, {\n\tsample: new SampleSchema(),\n});"
             - read: database_import
               eval: "import SampleSchema from './schemas/sampleSchema';"
             - read: database_sql
               eval: "\b"
+            - read: database_var
+              eval: "const database = new MongoPersistence(readDatabase, {\n\tsample: new SampleSchema(),\n});"
             - read: database_port
               eval: "27017"
             - read: database_name
@@ -32,12 +32,12 @@ steps:
             - eval: 'MongoDB'
       - PGSQL:
           steps:
-          - read: database_var
-            eval: "const database = new DAOPersistence(sql, {\n\tsample: new SampleDAO(),\n});"
           - read: database_import
-            eval: "import { PGSQL } from '@flexiblepersistence/pgsql';\nimport SampleDAO from './dAOs/sampleDAO';"
+            eval: "import { DAOPersistence } from '@flexiblepersistence/dao';\nimport { PGSQL } from '@flexiblepersistence/pgsql';\nimport SampleDAO from './dAOs/sampleDAO';"
           - read: database_sql
             eval: "const sql = new PGSQL(readDatabase);"
+          - read: database_var
+            eval: "const database = new DAOPersistence(sql, {\n\tsample: new SampleDAO(),\n});"
           - read: database_port
             eval: "5432"
           - read: database_name
@@ -53,12 +53,12 @@ steps:
           - eval: 'PGSQL'
       - MSSQL:
           steps:
-          - read: database_var
-            eval: "const database = new DAOPersistence(sql, {\n\tsample: new SampleDAO(),\n});"
           - read: database_import
-            eval: "import { MSSQL } from '@flexiblepersistence/mssql';\nimport SampleDAO from './dAOs/sampleDAO';"
+            eval: "import { DAOPersistence } from '@flexiblepersistence/dao';\nimport { MSSQL } from '@flexiblepersistence/mssql';\nimport SampleDAO from './dAOs/sampleDAO';"
           - read: database_sql
             eval: "const sql = new MSSQL(readDatabase);"
+          - read: database_var
+            eval: "const database = new DAOPersistence(sql, {\n\tsample: new SampleDAO(),\n});"
           - read: database_port
             eval: "1433"
           - read: database_name
