@@ -107,10 +107,10 @@ steps:
   - read: disable_write_database
     prompt: Disable write database?
     choices:
-      - DISABLE:
-        eval: 'true'
-      - ENABLE:
-        eval: 'false'
+      - YES:
+          eval: 'true'
+      - NO:
+          eval: 'false'
 
   - update: README.md
   - update: docker-compose.yml
