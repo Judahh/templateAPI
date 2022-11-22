@@ -17,7 +17,18 @@ steps:
               eval: "import SampleSchema from './schemas/sampleSchema';"
             - read: database_sql
               eval: "\b"
+            - read: database_port
+              eval: 27017
+            - read: database_name
+              eval: ""
+            - read: database_user
+              eval: ""
+            - read: database_password
+              eval: ""
+            - read: database_encryption_disabled
+              eval: ""
             - remove: src/dAOs/sampleDAO.ts
+            - remove: src/dAOs
             - eval: 'MongoDB'
       - PGSQL:
           steps:
@@ -27,7 +38,18 @@ steps:
             eval: "import { PGSQL } from '@flexiblepersistence/pgsql';\nimport SampleDAO from './dAOs/sampleDAO';"
           - read: database_sql
             eval: "const sql = new PGSQL(readDatabase);"
+          - read: database_port
+            eval: 5432
+          - read: database_name
+            eval: "db"
+          - read: database_user
+            eval: "sa"
+          - read: database_password
+            eval: "Passw@rd"
+          - read: database_encryption_disabled
+            eval: ""
           - remove: src/schemas/sampleSchema.ts
+          - remove: src/schemas
           - eval: 'PGSQL'
       - MSSQL:
           steps:
@@ -37,8 +59,26 @@ steps:
             eval: "import { MSSQL } from '@flexiblepersistence/mssql';\nimport SampleDAO from './dAOs/sampleDAO';"
           - read: database_sql
             eval: "const sql = new MSSQL(readDatabase);"
+          - read: database_port
+            eval: 1433
+          - read: database_name
+            eval: "db"
+          - read: database_user
+            eval: "sa"
+          - read: database_password
+            eval: "Passw@rd"
+          - read: database_encryption_disabled
+            eval: true
           - remove: src/schemas/sampleSchema.ts
+          - remove: src/schemas
           - eval: 'MSSQL'
+
+  - read: framework
+    prompt: What rest framework do you want to use?
+    choices:
+      - express
+      - aws-lambda
+      - next
 
   - update: README.md
   - update: package.json
