@@ -108,9 +108,11 @@ steps:
     prompt: Disable write database?
     choices:
       - yes:
-        eval: 'true'
+        steps:
+          - eval: 'true'
       - no:
-        eval: 'false'
+        steps:
+          - eval: 'false'
 
   - update: README.md
   - update: docker-compose.yml
