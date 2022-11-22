@@ -24,7 +24,7 @@ steps:
             - read: database_user
               eval: "sa"
             - read: database_password
-              eval: "Passw0rd!"
+              eval: "5up3rP455w0rd"
             - read: database_encryption_disabled
               eval: "false"
             - read: database_image
@@ -53,7 +53,7 @@ steps:
           - read: database_user
             eval: "sa"
           - read: database_password
-            eval: "Passw0rd!"
+            eval: "5up3rP455w0rd"
           - read: database_encryption_disabled
             eval: "false"
           - read: database_image
@@ -82,7 +82,7 @@ steps:
           - read: database_user
             eval: "sa"
           - read: database_password
-            eval: "Passw0rd!"
+            eval: "5up3rP455w0rd"
           - read: database_encryption_disabled
             eval: "true"
           - read: database_image
