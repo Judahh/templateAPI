@@ -24,9 +24,9 @@ steps:
             - read: database_user
               eval: "sa"
             - read: database_password
-              eval: "Passw@rd"
+              eval: "Passw0rd!"
             - read: database_encryption_disabled
-              eval: ""
+              eval: "false"
             - read: database_image
               eval: "mongo"
             - read: database_env_name
@@ -53,9 +53,9 @@ steps:
           - read: database_user
             eval: "sa"
           - read: database_password
-            eval: "Passw@rd"
+            eval: "Passw0rd!"
           - read: database_encryption_disabled
-            eval: ""
+            eval: "false"
           - read: database_image
             eval: "mcr.microsoft.com/azure-sql-edge"
           - read: database_env_name
@@ -82,7 +82,7 @@ steps:
           - read: database_user
             eval: "sa"
           - read: database_password
-            eval: "Passw@rd"
+            eval: "Passw0rd!"
           - read: database_encryption_disabled
             eval: "true"
           - read: database_image
