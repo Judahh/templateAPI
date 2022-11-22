@@ -16,7 +16,7 @@ steps:
             - read: database_import
               eval: "import SampleSchema from './schemas/sampleSchema';"
             - read: database_sql
-              eval: ""
+              eval: "\b"
             - remove: src/dAOs/sampleDAO.ts
             - eval: 'MongoDB'
       - PGSQL:
