@@ -27,6 +27,14 @@ steps:
               eval: ""
             - read: database_encryption_disabled
               eval: ""
+            - read: database_image
+              eval: "mongo"
+            - read: database_env_name
+              eval: "MONGO_INITDB_ROOT_USERNAME"
+            - read: database_env_password
+              eval: "MONGO_INITDB_ROOT_PASSWORD"
+            - read: database_env_database
+              eval: "MONGO_INITDB_DATABASE"
             - remove: src/dAOs/sampleDAO.ts
             - remove: src/dAOs
             - eval: 'MongoDB'
@@ -48,6 +56,14 @@ steps:
             eval: "Passw@rd"
           - read: database_encryption_disabled
             eval: ""
+          - read: database_image
+            eval: "mcr.microsoft.com/azure-sql-edge"
+          - read: database_env_name
+            eval: "POSTGRES_USER"
+          - read: database_env_password
+            eval: "POSTGRES_PASSWORD"
+          - read: database_env_database
+            eval: "POSTGRES_DB"
           - remove: src/schemas/sampleSchema.ts
           - remove: src/schemas
           - eval: 'PGSQL'
@@ -69,6 +85,14 @@ steps:
             eval: "Passw@rd"
           - read: database_encryption_disabled
             eval: "true"
+          - read: database_image
+            eval: "postgres"
+          - read: database_env_name
+            eval: "MSSQL_SA_USER"
+          - read: database_env_password
+            eval: "MSSQL_SA_PASSWORD"
+          - read: database_env_database
+            eval: "MSSQL_DB"
           - remove: src/schemas/sampleSchema.ts
           - remove: src/schemas
           - eval: 'MSSQL'
@@ -80,7 +104,16 @@ steps:
       - aws-lambda
       - next
 
+  - read: disable_write_database
+    prompt: Disable write database?
+    choices:
+      - yes:
+        eval: 'true'
+      - no:
+        eval: 'false'
+
   - update: README.md
+  - update: docker-compose.yml
   - update: package.json
   - update: .env
   - update: .github/workflows/Test.yml
