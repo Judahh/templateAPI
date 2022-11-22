@@ -20,11 +20,11 @@ steps:
             - read: database_port
               eval: "27017"
             - read: database_name
-              eval: ""
+              eval: "db"
             - read: database_user
-              eval: ""
+              eval: "sa"
             - read: database_password
-              eval: ""
+              eval: "Passw@rd"
             - read: database_encryption_disabled
               eval: ""
             - read: database_image

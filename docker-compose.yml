@@ -6,11 +6,11 @@ services:
       - 27017:27015
 
   readDB:
-    image: mongo:latest
+    image: {{ tmplr.database_image }}:latest
     ports:
       - {{ tmplr.database_port }}:{{ tmplr.database_port }}
     environment:
       ACCEPT_EULA: Y
-      {{ database_env_name }}: {{ tmplr.database_user }}
-      {{ database_env_password }}: {{ tmplr.database_password }}
-      {{ database_env_database }}: {{ tmplr.database_name }}
+      {{ tmplr.database_env_name }}: {{ tmplr.database_user }}
+      {{ tmplr.database_env_password }}: {{ tmplr.database_password }}
+      {{ tmplr.database_env_database }}: {{ tmplr.database_name }}
