@@ -32,6 +32,7 @@
     "@flexiblepersistence/mssql": "latest",
     "@flexiblepersistence/pgsql": "latest",
     "@flexiblepersistence/dao": "latest",
+    "@flexiblepersistence/sequelize": "latest",
     "@flexiblepersistence/service": "latest",
     "@flexiblepersistence/database-info": "latest",
     "@midware/mauth": "latest",

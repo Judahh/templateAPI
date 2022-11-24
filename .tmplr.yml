@@ -37,6 +37,8 @@ steps:
               eval: "MONGO_INITDB_DATABASE"
             - remove: src/dAOs/sampleDAO.ts
             - remove: src/dAOs
+            - remove: src/sequelizeModels/sample.ts
+            - remove: src/sequelizeModels
             - eval: 'MongoDB'
       - PGSQL:
           steps:
@@ -57,7 +59,7 @@ steps:
           - read: database_encryption_disabled
             eval: "false"
           - read: database_image
-            eval: "mcr.microsoft.com/azure-sql-edge"
+            eval: "postgres"
           - read: database_env_name
             eval: "POSTGRES_USER"
           - read: database_env_password
@@ -66,6 +68,8 @@ steps:
             eval: "POSTGRES_DB"
           - remove: src/schemas/sampleSchema.ts
           - remove: src/schemas
+          - remove: src/sequelizeModels/sample.ts
+          - remove: src/sequelizeModels
           - eval: 'PGSQL'
       - MSSQL:
           steps:
@@ -86,7 +90,7 @@ steps:
           - read: database_encryption_disabled
             eval: "true"
           - read: database_image
-            eval: "postgres"
+            eval: "mcr.microsoft.com/azure-sql-edge"
           - read: database_env_name
             eval: "MSSQL_SA_USER"
           - read: database_env_password
@@ -95,7 +99,43 @@ steps:
             eval: "MSSQL_DB"
           - remove: src/schemas/sampleSchema.ts
           - remove: src/schemas
+          - remove: src/sequelizeModels/sample.ts
+          - remove: src/sequelizeModels
           - eval: 'MSSQL'
+      - ORM:
+          steps:
+            - choices:
+              - PGSQL:
+                steps:
+                  - read: database_import
+                    eval: "import { SequelizePersistenceInfo, SequelizePersistence } from '@flexiblepersistence/sequelize';\nimport SampleModel from './sequelizeModels/sample';"
+                  - read: database_sql
+                    eval: "\nconst info = new SequelizePersistenceInfo(readDatabase, journaly, {\n\tlogging: false,\n});"
+                  - read: database_var
+                    eval: "const database = new SequelizePersistence(info, {\n\tsample: new SampleModel(),\n});"
+                  - read: database_port
+                    eval: "5432"
+                  - read: database_name
+                    eval: "db"
+                  - read: database_user
+                    eval: "sa"
+                  - read: database_password
+                    eval: "5up3rP455w0rd"
+                  - read: database_encryption_disabled
+                    eval: "false"
+                  - read: database_image
+                    eval: "postgres"
+                  - read: database_env_name
+                    eval: "POSTGRES_USER"
+                  - read: database_env_password
+                    eval: "POSTGRES_PASSWORD"
+                  - read: database_env_database
+                    eval: "POSTGRES_DB"
+                  - remove: src/schemas/sampleSchema.ts
+                  - remove: src/schemas
+                  - remove: src/dAOs/sampleDAO.ts
+                  - remove: src/dAOs
+                  - eval: 'PGSQL'
 
   - read: framework
     prompt: What rest framework do you want to use?
