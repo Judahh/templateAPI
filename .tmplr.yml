@@ -104,8 +104,7 @@ steps:
           - eval: 'MSSQL'
       - ORM: # Sequlize supported dialects: mssql, mariadb, mysql, oracle, postgres, db2 and sqlite.
           steps:
-          - read: database_orm_type
-            prompt: What database type do you want to use?
+          - prompt: What database type do you want to use?
             choices:
               - PGSQL:
                   steps:
