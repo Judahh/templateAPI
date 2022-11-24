@@ -1,4 +1,4 @@
-import { BaseModelDefault } from 'flexiblepersistence';
+import { BaseModelDefault } from '@flexiblepersistence/sequelize';
 import { DataTypes } from 'sequelize';
 
 export default class Sample extends BaseModelDefault {
