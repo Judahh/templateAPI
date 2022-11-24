@@ -1,5 +1,5 @@
 {
-  "name": "{{ tmplr.project_name }}",
+  "name": "{{ tmplr.project_name | kebab-case }}",
   "version": "1.0.1",
   "main": "server.js",
   "license": "MIT",
