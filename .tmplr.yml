@@ -136,7 +136,7 @@ steps:
                     - remove: src/schemas
                     - remove: src/dAOs/sampleDAO.ts
                     - remove: src/dAOs
-                eval: 'PGSQL'
+                  eval: 'PGSQL'
 
   - read: framework
     prompt: What rest framework do you want to use?
