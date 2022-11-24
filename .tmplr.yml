@@ -104,7 +104,7 @@ steps:
           - eval: 'MSSQL'
       - ORM:
           steps:
-            read: database_orm_type
+          - read: database_orm_type
             prompt: What database type do you want to use?
             choices:
               - PGSQL:
