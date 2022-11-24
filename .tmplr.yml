@@ -102,7 +102,7 @@ steps:
           - remove: src/sequelizeModels/sample.ts
           - remove: src/sequelizeModels
           - eval: 'MSSQL'
-      - ORM: # Sequlize supported dialects: mssql, mariadb, mysql, oracle, postgres, db2 and sqlite.
+      - SequlizeORM: # Sequlize supported dialects: mssql, mariadb, mysql, oracle, postgres, db2 and sqlite.
           steps:
           - prompt: What database type do you want to use?
             choices:
@@ -136,6 +136,7 @@ steps:
                     - remove: src/schemas
                     - remove: src/dAOs/sampleDAO.ts
                     - remove: src/dAOs
+                    - read: database_type
                     - eval: 'PGSQL'
 
   - read: framework
